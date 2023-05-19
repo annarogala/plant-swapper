@@ -1,0 +1,5 @@
+flask_app/venv
+flask_app/__pycache__
+flask_app/app/__pycache__
+cheatsheet.md
+.prettierignore
