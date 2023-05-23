@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'layout.html' %}
 
 {% block title %}
 <title>Plant swapper</title>
@@ -28,4 +28,5 @@
   <input type="text" name="content" id="content" />
   <input type="submit" value="Add plant" />
 </form>
+<a href="{{url_for('logout')}}">Press here to logout</a>
 {% endblock %}
