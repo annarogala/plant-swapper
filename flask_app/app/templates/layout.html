@@ -8,9 +8,17 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/main.css') }}"
     />
-    {% block title %}{% endblock %}
+    {% if title %}
+      <title>{{ title }} - Plant Swapper</title>
+      {% else %}
+      <title>Welcome to PLant Swapper</title>
+      {% endif %}
   </head>
   <body>
+    <nav>
+      <a href="{{url_for('login')}}">Login</a>
+      <a href="{{url_for('register')}}">Sign up</a>
+    </nav>
     {% block body %}{% endblock %}
   </body>
 </html>
