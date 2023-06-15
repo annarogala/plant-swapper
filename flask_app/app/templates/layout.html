@@ -10,11 +10,7 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/main.css') }}"
     />
-    {% if title %}
-      <title>{{ title }} - Plant Swapper</title>
-    {% else %}
-      <title>Plant Swapper</title>
-    {% endif %}
+    <title>{% block title %}Plant Swapper{% endblock %}</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top mb-4">
