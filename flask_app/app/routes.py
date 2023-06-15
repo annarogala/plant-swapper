@@ -57,7 +57,7 @@ def plants_listing():
         try:
             db.session.add(new_plant)
             db.session.commit()
-            return redirect('/')
+            return redirect('/plants-listing')
         except:
             return 'Error happened while adding a plant'
     else:
