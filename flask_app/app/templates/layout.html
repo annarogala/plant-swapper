@@ -4,21 +4,54 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/main.css') }}"
     />
     {% if title %}
       <title>{{ title }} - Plant Swapper</title>
-      {% else %}
-      <title>Welcome to PLant Swapper</title>
-      {% endif %}
+    {% else %}
+      <title>Plant Swapper</title>
+    {% endif %}
   </head>
   <body>
-    <nav>
-      <a href="{{url_for('login')}}">Login</a>
-      <a href="{{url_for('register')}}">Sign up</a>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{url_for('index')}}">
+          <img src="{{url_for('static', filename='images/plant_swapper_logo.png')}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+          <span class="h5 text-success-emphasis">PLANT SWAPPER</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" style="justify-content: center" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('index')}}">Transactions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('login')}}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('register')}}">Sign up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
+
+    <h2 class="text-center text-success">{% block header %}{% endblock %}</h2>
+
     {% block body %}{% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
 </html>

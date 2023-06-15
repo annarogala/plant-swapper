@@ -1,14 +1,20 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-<title>Plant swapper</title>
+<title>Welcome to Plant swapper</title>
+{% endblock %}
+
+{% block header %}
+  Discover our plants
 {% endblock %}
 
 {% block body %}
-<h1>Plant swapper!</h1>
 
 {% if plants|length < 1 %}
-<h4>No plants added.</h4>
+<h3 class="text-center mt-5">No plants added yet</h3>
+<h3 class="text-center text-uppercase">
+  <a type="button" class="btn btn-success mt-2" href="{{url_for('new_plant')}}">ADD FIRST PLANT</a>
+</h3>
 
 {% else %}
 
@@ -24,9 +30,4 @@
 
 {% endif %}
 
-<form action="/plants-listing" method="POST">
-  <input type="text" name="content" id="content" />
-  <input type="submit" value="Add plant" />
-</form>
-<a href="{{url_for('logout')}}">Press here to logout</a>
 {% endblock %}

@@ -1,19 +1,40 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-<title>Sign up</title>
+  <title>Sign up</title>
+{% endblock %}
+
+{% block header %}
+  Sign up
 {% endblock %}
 
 {% block body %}
-    <h1>Sign up</h1>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        {{ form.username }}
-        {{ form.password }}
-        {{ form.submit }}
-    </form>
-    <a href="{{url_for('login')}}">Already have the account? Log in here</a>
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			{% if error %}
+				<p class="text-error">{{ error }}</p>
+			{% endif %}
+			<div class="col-lg-4 col-md-6 col-sm-8 text-center">
+				<form method="POST" action="">
+					{{ form.hidden_tag() }}
+					<div class="mb-3">
+						{{ form.username }}
+					</div>
+					<div class="mb-3">
+						{{ form.password }}
+					</div>
+					<div class="mb-3">
+						<button type="submit" class="btn btn-success">Register</button>
+					</div>
+				</form>
+			</div>
+			<p class="text-center">Already have the account? <a href="{{url_for('login')}}">Log in here</a></p>
+		</div>
+	</div>
 {% endblock %}
+
+
+
+
+			
+

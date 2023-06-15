@@ -1,13 +1,29 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-<title>Plant swapper</title>
+  <title>Plant swapper</title>
+{% endblock %}
+
+{% block header %}
+  Update plant
 {% endblock %}
 
 {% block body %}
-<h1>Update plant</h1>
-<form action="/update/{{plant.id}}" method="POST">
-  <input type="text" name="content" id="content" value="{{ plant.content}}" />
-  <input type="submit" value="Update" />
-</form>
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			{% if error %}
+				<p class="text-error">{{ error }}</p>
+			{% endif %}
+			<div class="col-lg-4 col-md-6 col-sm-8 text-center">
+        <form action="/update/{{plant.id}}" method="POST">
+          <div class="mb-3">
+            <input type="text" class="form-control" name="content" id="content" value="{{ plant.content}}">
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-success">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock %}
