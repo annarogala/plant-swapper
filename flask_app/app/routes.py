@@ -6,12 +6,11 @@ from .models import Plant, User
 from .login_form import LoginForm, RegisterForm
 
 
-
 @app.route('/')
 @app.route('/index')
-@login_required
 def index():
-    return render_template('layout.html')
+    plants = Plant.query.order_by(Plant.date_created).all()
+    return render_template('plants-listing.html', plants=plants)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -19,11 +18,11 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-            user = User.query.filter_by(username=form.username.data).first()
-            if user:
-                if bcrypt.check_password_hash(user.password, form.password.data):
-                    login_user(user)
-                    return redirect('plants-listing')
+        user = User.query.filter_by(username=form.username.data).first()
+        if user:
+            if bcrypt.check_password_hash(user.password, form.password.data):
+                login_user(user)
+                return redirect('/')
     return render_template('login.html', form=form)
 
 
@@ -48,8 +47,9 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route('/plants-listing', methods=['GET', 'POST'])
-def plants_listing():
+@app.route('/new-plant', methods=['GET', 'POST'])
+@login_required
+def new_plant():
     if request.method == 'POST':
         plant_content =  request.form['content']
         new_plant = Plant(content=plant_content)
@@ -57,12 +57,12 @@ def plants_listing():
         try:
             db.session.add(new_plant)
             db.session.commit()
-            return redirect('/plants-listing')
+            return redirect('/')
         except:
             return 'Error happened while adding a plant'
     else:
         plants = Plant.query.order_by(Plant.date_created).all()
-        return render_template('plants-listing.html', plants=plants)
+        return render_template('plant-form.html', plants=plants)
 
 
 @app.route('/delete/<int:id>')
