@@ -1,5 +1,9 @@
+flask_app/instance/database.md
 flask_app/venv
 flask_app/__pycache__
 flask_app/app/__pycache__
-cheatsheet.md
+
+.flaskenv
 .prettierignore
+
+cheatsheet.md
