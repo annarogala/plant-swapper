@@ -18,7 +18,7 @@
 				<form method="POST" action="">
 					{{ form.hidden_tag() }}
 					<div class="mb-3">
-						{{ form.username }}
+						{{ form.email }}
 					</div>
 					<div class="mb-3">
 						{{ form.password }}
@@ -28,7 +28,10 @@
 					</div>
 				</form>
 			</div>
-			<p class="text-center">Don't have the account? <a href="{{url_for('register')}}">Register here</a></p>
+			<p class="text-center small">
+				<a class="text-secondary" href="{{ url_for('reset_password_request') }}">Forgot Your Password?</a>
+			</p>
+			<p class="text-center mt-2">Don't have the account? <a href="{{url_for('register')}}">Register here</a></p>
 		</div>
 	</div>
 {% endblock %}
