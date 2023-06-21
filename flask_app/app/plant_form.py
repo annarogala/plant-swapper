@@ -13,3 +13,4 @@ class PlantForm(FlaskForm):
                              InputRequired(), Length(min=8, max=300)], render_kw={"placeholder": "image url"})
     
     submit = SubmitField('Add plant')
+    
