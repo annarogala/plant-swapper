@@ -17,7 +17,7 @@
 			<div class="col-lg-4 col-md-6 col-sm-8 text-center">
         <form action="/update/{{plant.id}}" method="POST">
           <div class="mb-3">
-            <input type="text" class="form-control" name="content" id="content" value="{{ plant.content}}">
+            <input type="text" class="form-control" placeholder="new description" name="description" id="description" value="{{ plant.content}}">
           </div>
           <div class="mb-3">
             <button type="submit" class="btn btn-success">Update</button>
