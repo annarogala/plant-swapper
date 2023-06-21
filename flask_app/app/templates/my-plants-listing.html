@@ -5,32 +5,29 @@
 {% endblock %}
 
 {% block header %}
-  Discover our plants
+  My plants
 {% endblock %}
 
 {% block body %}
 
-{% if plants|length < 1 %}
-<h3 class="text-center mt-5">No plants added yet</h3>
 <h3 class="text-center text-uppercase">
-  <a type="button" class="btn btn-success mt-2" href="{{url_for('new_plant')}}">ADD FIRST PLANT</a>
+  <a type="button" class="btn btn-success mt-2" href="{{url_for('new_plant')}}">ADD PLANT</a>
 </h3>
 
-{% else %}
 <div class="container mt-5">
   <div class="card-deck d-flex flex-wrap">
     {% for plant in plants %}
 
-      {% if session.get("user_id") != plant.user_id %}
+      {% if session.get("user_id") == plant.user_id %}
         <div class="card" style="min-width: 20rem; max-width: 20rem; margin: 10px;">
           <img class="card-img-top" src={{ plant.image }} alt={{ plant.name }}>
           <div class="card-body">
             <h5 class="card-title"><strong>{{ plant.name }}</strong></h5>
             <p class="card-text">{{ plant.description }}</p>
-            {% if current_user.is_authenticated %}
-              <div class="text-center"><a href="#" class="btn btn-success mt-4 mb-4" style="width: 100%;">Swap out!</a></div>
-            {% endif %}
-            <p class="card-text" style="margin-bottom: 2px;"><small class="text-muted">From: {{ plant.city }}</small></p>
+            <div class="d-flex flex-column justify-content-center align-items-center mt-4 mb-4">
+              <a href="/update/{{ plant.id }}" class="btn btn-success" style="width: 100%; margin-bottom: 4px;">Update description</a>
+              <a href="/delete/{{ plant.id }}" class="btn btn-danger" style="width: 100%">Delete</a>
+            </div>
             <p class="card-text"><small class="text-muted">Added: {{ plant.date_created }}</small></p>
           </div>
         </div>
@@ -39,6 +36,5 @@
     {% endfor %}
   </div>
 </div>
-{% endif %}
 
 {% endblock %}
